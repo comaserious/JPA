@@ -1,17 +1,13 @@
-package com.ohgiraffers.section02.crud;
+package com.ohgiraffers.section03.entity;
 
 import jakarta.persistence.*;
 
-@Entity(name ="section02Menu")
+@Entity(name="section03Menu")
 @Table(name="tbl_menu")
 public class Menu {
 
-    // pk =>not null,unique=> auto_increment
-    @Id  // not null, unique
-    @GeneratedValue(strategy = GenerationType.IDENTITY)   // Identity = > mysql Sequence => oracle
-    /* strategy 속성
-    *  - AUTO : 우리가 사용하는 DB에 따른다
-    *  - IDENTITY / SEQUENCE : mysql auto_increment 사용 oracle sequence 를 사용*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="menu_code")
     private int menuCode;
 
@@ -27,20 +23,17 @@ public class Menu {
     @Column(name="orderable_status")
     private String orderableStatus;
 
-    // 동일 패키지까지만 접근 가능
     protected Menu(){}
 
-    protected Menu(String menuName, int menuPrice, int categoryCode, String orderableStatus) {
+    public Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
+        this.menuCode = menuCode;
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.categoryCode = categoryCode;
         this.orderableStatus = orderableStatus;
     }
 
-    protected Menu(int menuCode, String menuName, int menuPrice, int categoryCode, String orderableStatus) {
-
-
-        this.menuCode = menuCode;
+    protected Menu(String menuName, int menuPrice, int categoryCode, String orderableStatus) {
         this.menuName = menuName;
         this.menuPrice = menuPrice;
         this.categoryCode = categoryCode;
@@ -85,5 +78,16 @@ public class Menu {
 
     public void setOrderableStatus(String orderableStatus) {
         this.orderableStatus = orderableStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuCode=" + menuCode +
+                ", menuName='" + menuName + '\'' +
+                ", menuPrice=" + menuPrice +
+                ", categoryCode=" + categoryCode +
+                ", orderableStatus='" + orderableStatus + '\'' +
+                '}';
     }
 }

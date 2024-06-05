@@ -3,6 +3,7 @@
     <persistence-unit name="jpatest">
         <!--Entity 등록-->
         <class>com.ohgiraffers.section02.crud.Menu</class>
+        <class>com.ohgiraffers.section03.entity.Menu</class>
         <!--Entity 등록-->
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

@@ -161,7 +161,7 @@ public class EntityLifeCycleTests {
         transaction.rollback();
     }
 
-    @DisplayName("준영소갸화 clear 테스트")
+    @DisplayName("준영속성화 clear 테스트")
     @ParameterizedTest
     @ValueSource(ints={1,2,3})
     void testClearPersistenceContext(int menuCode){
@@ -191,6 +191,7 @@ public class EntityLifeCycleTests {
         Menu foundMenu = manager.find(Menu.class,menuCode);
 
         // close() : 영속성 컨텍스트를 종료한다 => 영속성 컨텍스트 내 모든 객체를 준영속화 시킨다
+        // close() 이후 manager 관련기능 모두 사용 할 수 없게 된다
         manager.close();
 
 //        Menu expectedMenu = manager.find(Menu.class,menuCode);

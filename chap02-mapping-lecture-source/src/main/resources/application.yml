@@ -1,3 +1,7 @@
+server:
+  servlet:
+    encoding:
+      force-response: true
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -18,3 +22,5 @@ spring:
     properties:
       hibernate:
         format_sql: true      # ???? ?? ???? ?? sql ?? ?????
+
+

@@ -114,6 +114,7 @@ public class SimpleJPQLTest {
 //        for(Menu m : menuList){
 //            System.out.println(m);
 //        }
+
 //        menuList.forEach(menu -> System.out.println(menu));
 
         menuList.forEach(System.out::println);

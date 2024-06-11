@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Stream;
 
@@ -33,6 +34,7 @@ public class BidirectionTests {
 
     @DisplayName("양방향 영관관계 매핑 조회 테스트")
     @Test
+    @Transactional
     void ownerFindTest1(){
         // given
         int menuCode = 10;
@@ -40,17 +42,18 @@ public class BidirectionTests {
         //when
         // 처음주터 조회시 조인한 결과를 가져온다
         Menu foundmenu = bidirectionService.findMenu(menuCode);
+        System.out.println("foundmenu = " + foundmenu);
+
 
         //then
-
         Assertions.assertEquals(menuCode,foundmenu.getMenuCode());
 
-        System.out.println("foundmenu = " + foundmenu);
 
     }
 
     @DisplayName("양방향 연관관계 매핑 조회 테스트 2 (연관관계의 주인이 아닌 객체)")
     @Test
+    @Transactional
     void notOwnerFindTest2(){
         //given
 
@@ -60,6 +63,10 @@ public class BidirectionTests {
         /*해당 엔티티 조회하고 필요시 연관관계 엔티티를 조회하는 쿼리를 실행한다*/
         Category foundCategory = bidirectionService.findCategory(categoryCode);
 
+        System.out.println("[category menuList]"+ foundCategory.getMenuList());
+        // @Transactional 범위가 service 단 까지 였는데 이를 test 의 영역까지 확장을 하게 되면
+        // OneToMany 의 System.out 또한 정상작동하는 것을 확인할 수있다
+        // 문제는 @Transactional 의 범위 였다!!!!!!!!!
         //then
         Assertions.assertEquals(categoryCode,foundCategory.getCategoryCode());
 

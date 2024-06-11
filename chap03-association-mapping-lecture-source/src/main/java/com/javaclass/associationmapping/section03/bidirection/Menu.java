@@ -12,7 +12,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
+@ToString()
 public class Menu {
     @Id
     @Column(name="menu_code")

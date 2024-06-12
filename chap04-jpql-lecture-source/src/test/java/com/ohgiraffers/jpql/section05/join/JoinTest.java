@@ -46,6 +46,21 @@ public class JoinTest {
                     System.out.println();
                 }
         );
+
+        // right join 을 하게 되면 중심 entity 가 join 인 category 가 된다
+        // 하지만 실제로 사용하는 entity 는 menu 이고 따라서 menu 의 @Id 인 menuCode 가 null 인 값도 존재 하게 되고
+        // 따라서 Menu 자체가 생성 되지 않는다 즉, right join 의 의도인 menu table 의 값에 관계없이 category를 보려는 의도가
+        // 퇴색된다. 따라서 Menu 로 받는 것이 아닌 Object[] 를 통해서 right join 의 의도를 살린것이다
+    }
+
+    @DisplayName("right join 진짜 문제인가")
+    @Test
+    void rightJoinTest(){
+        List<Menu> menuList = repository.rightjoinTest();
+
+        menuList.forEach(System.out::println);
+
+
     }
 
     @DisplayName("컬렉션 조인을 이용한 조회 테스트")
@@ -75,11 +90,8 @@ public class JoinTest {
         menuList.forEach(System.out::println);
     }
 
-    @DisplayName("rightjoin 진짜 문제인가")
-    @Test
-    void rightJoinTest(){
-        List<Menu> menuList = repository.rightjoinTest();
+    // inner join 과 달리 join fetch 를 하게 되면 hibernate 를 확인 해보면 알수 있듯이
+    // category entity를 조회하지 않고 바로 join 을 통해서 값을 가지고 온다
+    // 상황에 따라서는 이게 더 효율적인 데이터 탐색이 될 수 있다
 
-        menuList.forEach(System.out::println);
-    }
 }

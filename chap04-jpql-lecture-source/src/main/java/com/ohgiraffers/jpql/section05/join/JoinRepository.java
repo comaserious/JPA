@@ -43,7 +43,7 @@ public class JoinRepository {
     public List<Menu> selectFetchInnerJoin() {
 
         String jpql = "select m from section05Menu m join fetch m.category c";
-        List<Menu> menuList= manager.createQuery(jpql,Menu.class).getResultList();
+        List<Menu> menuList= manager.createQuery(jpql, Menu.class).getResultList();
 
         return menuList;
     }
@@ -52,7 +52,7 @@ public class JoinRepository {
 
         String jpql = "select m from section05Menu m right join m.category c";
 
-        List<Menu> menuList = manager.createQuery(jpql,Menu.class).getResultList();
+        List<Menu> menuList = manager.createQuery(jpql, Menu.class).getResultList();
 
         return  menuList;
     }

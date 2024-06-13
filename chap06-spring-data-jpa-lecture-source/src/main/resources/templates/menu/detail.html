@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10 번 메뉴</title>
+</head>
+<body>
+    <table style="border: solid black">
+        <tr>
+            <th>메뉴번호</th>
+            <th>메뉴이름</th>
+            <th>메뉴가격</th>
+            <th>카테고리코드</th>
+            <th>주문가능여부</th>
+        </tr>
+        <tr>
+            <th th:text="${menu.menuCode}"></th>
+            <th th:text="${menu.menuName}"></th>
+            <th th:text="${menu.menuPrice}"></th>
+            <th th:text="${menu.categoryCode}"></th>
+            <th th:text="${menu.orderableStatus}"></th>
+        </tr>
+    </table>
+</body>
+</html>

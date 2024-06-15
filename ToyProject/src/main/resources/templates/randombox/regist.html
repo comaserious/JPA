@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>벌칙 등록</h1>
+    <form action="/randombox/regist" method="post" id="formmater" style="display: flex; flex-direction: column">
+        <input type="text" name="p1" placeholder="벌칙 1">
+        <button id="adding" type="button" value="1">벌칙 추가</button>
+        <input type="submit" 등록하기>
+    </form>
+
+    <script>
+        const $form = document.getElementById('formmater');
+        const $add = document.getElementById('adding');
+
+        $add.addEventListener('click',e=>addingPunish())
+
+        function addingPunish(){
+            let pNum = $add.value;
+            ++pNum;
+            $add.value=pNum;
+            const $input = document.createElement('input');
+            $input.type="text";
+            $input.name=`p${pNum}`
+            $input.placeholder=`벌칙 ${pNum}`;
+            $form.insertBefore($input,$add);
+
+        }
+
+    </script>
+</body>
+</html>

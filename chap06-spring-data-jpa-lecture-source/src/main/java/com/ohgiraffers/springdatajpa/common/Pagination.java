@@ -25,7 +25,7 @@ public class Pagination {
         if(page.getTotalPages() < endPage) {
             endPage = page.getTotalPages();
         }
-        /*페이지가 0  즉, 전체 페이지가 1장일 경우*/
+        /*페이지가 0  즉, 전체 페이지가 1장 일 경우*/
         if(page.getTotalPages() == 0 && endPage==0){
             endPage = startPage;
         }

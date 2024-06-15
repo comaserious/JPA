@@ -85,4 +85,35 @@ public class MenuService {
         repository.save(modelMapper.map(menuDTO,Menu.class));
 
     }
+
+    @Transactional
+    public void modifyMenu(MenuDTO menuDTO) {
+
+        Menu menu = repository.findById(menuDTO.getMenuCode()).orElseThrow(IllegalArgumentException::new);
+
+        /*1. setter 사용해서 수정해보기 */
+//        menu.setMenuName(menuDTO.getMenuName());
+        // 권장하지는 않는다 Entity 의 무결성을 위배하기 때문에....
+
+        /*2. @Builder */
+//        menu = menu.toBuilder().menuName(menuDTO.getMenuName()).build();
+//
+//        repository.save(menu);
+//        System.out.println("menu = " + menu);
+
+        /*3. Entity 클래스 내부에서 builder 패턴 사용해서 구현*/
+        menu = menu.menuName(menuDTO.getMenuName()).builder();
+
+//        repository.save(menu);
+        // 변경감지로 save 하지 않아도 자동으로 DB 가 업데이트가 된다
+
+    }
+
+    @Transactional
+    public void deleteMenu(int menuCode) {
+        Menu menu = repository.findById(menuCode).orElseThrow(IllegalArgumentException::new);
+
+//        repository.delete(menu);
+        repository.deleteById(menuCode);
+    }
 }

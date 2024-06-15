@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="display: flex; align-items: center; justify-content: center;">
+    <div style="border-radius: 5px; border: solid 1px black; width: 50vw; height: 30vh; display: flex; justify-content: center; align-items: center;" id="randomBox"></div>
+
+    <script>
+        fetch("/randombox/repeat")
+            .then(res=>res.json())
+            .then(data=>{
+                console.table(data);
+                const $randomBox = document.getElementById('randomBox');
+                data.forEach(d=>{
+
+                })
+            })
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+server:
+  port: 8888
+spring:
+  jpa:
+    show-sql: true
+    database: mysql
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+    generate-ddl: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/toytoydb
+    username: toytoy
+    password: toytoy
